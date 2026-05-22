@@ -1,5 +1,6 @@
 import { AnimatedHero } from "@/components/AnimatedHero";
 import { AboutMeSection } from "@/components/AboutMeSection";
+import { CaseStudiesSection } from "@/components/CaseStudiesSection";
 import { CoreStrengthsSection } from "@/components/CoreStrengthsSection";
 import { CustomCursor } from "@/components/CustomCursor";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -16,6 +17,7 @@ export default function Home() {
         <AnimatedHero />
         <CoreStrengthsSection />
         <AboutMeSection />
+        <CaseStudiesSection />
 
         <section
           id="projects"

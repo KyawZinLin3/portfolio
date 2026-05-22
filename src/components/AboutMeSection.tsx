@@ -44,7 +44,7 @@ const emptyRect: DragRect = {
 };
 
 const aboutText =
-  "I'm Kyaw Zin Lin, a full-stack developer from Yangon. I build production-ready APIs, SaaS backends, and web applications. I enjoy turning complex business workflows into simple, reliable systems. When I'm not coding, I lift weights, eat Shan noodles, and watch Arsenal matches. Arsenal fan through and through.";
+  "I'm Kyaw Zin Lin, a full-stack developer from Yangon. I build production-ready APIs and SaaS backends.I enjoy turning complex business workflows into simple, reliable systems. When I'm not coding, I lift weights, eat Shan noodles, play chess and watch Arsenal matches. Arsenal fan through and through.";
 
 function splitTextIntoRenderedLines(element: HTMLElement, text: string) {
   const words = text.trim().split(/\s+/);
@@ -209,6 +209,13 @@ const floatingCards: FloatingCardItem[] = [
     tiltClassName: "-rotate-[12deg]",
     imageClassName: "h-[5.4rem] w-[5.4rem] translate-y-1 md:h-[6.4rem] md:w-[6.4rem]",
     image: "/bicep-flex.svg",
+  },
+  {
+    label: "Myanmar",
+    className: "left-4 top-2 md:left-0 md:top-8",
+    tiltClassName: "rotate-[7deg]",
+    imageClassName: "h-[4.6rem] w-[6.2rem] md:h-[6.5rem] md:w-[7.0rem]",
+    image: "/mm-flag.svg",
   },
   {
     label: "Shan noodles",

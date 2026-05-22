@@ -4,6 +4,18 @@ export type Project = {
   tags: string[];
 };
 
+export type CaseStudy = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  tags: string[];
+  theme: "violet" | "emerald" | "amber" | "sky";
+  metrics: {
+    label: string;
+    value: string;
+  }[];
+};
+
 export type SkillGroup = {
   title: string;
   items: string[];
@@ -91,6 +103,57 @@ export const projects: Project[] = [
     description:
       "Composable storefront components for product discovery, cart flows, and campaign pages.",
     tags: ["Frontend", "Performance", "Accessibility"],
+  },
+];
+
+export const caseStudies: CaseStudy[] = [
+  {
+    eyebrow: "01 - SaaS Analytics",
+    title: "Executive Reporting Hub",
+    description:
+      "A focused analytics workspace for weekly growth reviews, built around fast filters, clean metric cards, and chart panels that stay readable in long sessions.",
+    tags: ["Next.js", "Charts", "Dashboard UX"],
+    theme: "violet",
+    metrics: [
+      { label: "load time", value: "1.2s" },
+      { label: "views", value: "8" },
+    ],
+  },
+  {
+    eyebrow: "02 - Operations",
+    title: "Workflow Command Center",
+    description:
+      "A compact operations surface for task routing, team handoff, and production visibility, designed to reduce switching between support tools.",
+    tags: ["React", "Queues", "Internal Tools"],
+    theme: "emerald",
+    metrics: [
+      { label: "tasks", value: "124" },
+      { label: "sla", value: "98%" },
+    ],
+  },
+  {
+    eyebrow: "03 - Commerce",
+    title: "Merchant Catalog Builder",
+    description:
+      "A storefront management flow that combines product editing, preview states, and campaign checks into a calmer publishing experience.",
+    tags: ["TypeScript", "Forms", "Preview"],
+    theme: "amber",
+    metrics: [
+      { label: "items", value: "320" },
+      { label: "drafts", value: "14" },
+    ],
+  },
+  {
+    eyebrow: "04 - Finance",
+    title: "Subscription Revenue Console",
+    description:
+      "A finance-friendly interface for subscriptions, invoices, and account health, with dense tables balanced by clear summaries and status signals.",
+    tags: ["ASP.NET", "Billing", "Data Tables"],
+    theme: "sky",
+    metrics: [
+      { label: "mrr", value: "$42k" },
+      { label: "risk", value: "Low" },
+    ],
   },
 ];
 
