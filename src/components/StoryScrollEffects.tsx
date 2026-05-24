@@ -23,6 +23,9 @@ export function StoryScrollEffects() {
           "data-case-studies-section",
         );
         const isSkillsSection = section.id === "skills";
+        const isExperienceSection = section.hasAttribute(
+          "data-experience-section",
+        );
         const headingParts = isSkillsSection
           ? (heading?.querySelectorAll<HTMLElement>("p, h2") ?? [])
           : (heading?.children ?? []);
@@ -92,6 +95,155 @@ export function StoryScrollEffects() {
                   duration: 0.5,
                 });
             });
+
+          return;
+        }
+
+        if (isExperienceSection) {
+          const line = section.querySelector("[data-experience-line]");
+          const dots = section.querySelectorAll("[data-experience-dot]");
+
+          gsap.set(headingParts, {
+            y: 42,
+            opacity: 0,
+            filter: "blur(10px)",
+          });
+
+          gsap.set(line, {
+            scaleY: 0,
+            transformOrigin: "top center",
+          });
+
+          gsap.set(dots, {
+            scale: 0.2,
+            opacity: 0,
+          });
+
+          gsap.set(items, {
+            x: 34,
+            y: 42,
+            opacity: 0,
+            scale: 0.97,
+            filter: "blur(10px)",
+          });
+
+          gsap.set("[data-experience-logo]", {
+            scale: 0.86,
+            rotate: -3,
+          });
+
+          gsap.set("[data-experience-date], [data-experience-tag]", {
+            y: 12,
+            opacity: 0,
+          });
+
+          gsap
+            .timeline({
+              defaults: {
+                ease: "none",
+              },
+              scrollTrigger: {
+                trigger: section,
+                start: "top 84%",
+                end: "bottom 55%",
+                scrub: 0.45,
+                invalidateOnRefresh: true,
+              },
+            })
+            .to(headingParts, {
+              y: 0,
+              opacity: 1,
+              filter: "blur(0px)",
+              stagger: 0.08,
+              duration: 0.18,
+            })
+            .to(
+              line,
+              {
+                scaleY: 1,
+                duration: 0.82,
+              },
+              0.1,
+            );
+
+          gsap.utils.toArray<HTMLElement>(items).forEach((item) => {
+            const wrapper = item.parentElement;
+            const dot = wrapper?.querySelector("[data-experience-dot]");
+            const logo = item.querySelector("[data-experience-logo]");
+            const date = item.querySelector("[data-experience-date]");
+            const tags = item.querySelectorAll("[data-experience-tag]");
+
+            const cardTimeline = gsap.timeline({
+                defaults: {
+                  ease: "power3.out",
+                },
+                scrollTrigger: {
+                  trigger: wrapper ?? item,
+                  start: "top 82%",
+                  end: "top 52%",
+                  scrub: 0.5,
+                  invalidateOnRefresh: true,
+                },
+              });
+
+            if (dot) {
+              cardTimeline.to(dot, {
+                scale: 1,
+                opacity: 1,
+                duration: 0.24,
+              });
+            }
+
+            cardTimeline.to(
+                item,
+                {
+                  x: 0,
+                  y: 0,
+                  opacity: 1,
+                  scale: 1,
+                  filter: "blur(0px)",
+                  duration: 0.68,
+                },
+                0,
+              );
+
+            if (logo) {
+              cardTimeline.to(
+                logo,
+                {
+                  scale: 1,
+                  rotate: 0,
+                  duration: 0.52,
+                },
+                0.12,
+              );
+            }
+
+            if (date) {
+              cardTimeline.to(
+                date,
+                {
+                  y: 0,
+                  opacity: 1,
+                  duration: 0.36,
+                },
+                0.2,
+              );
+            }
+
+            if (tags.length > 0) {
+              cardTimeline.to(
+                tags,
+                {
+                  y: 0,
+                  opacity: 1,
+                  stagger: 0.02,
+                  duration: 0.36,
+                },
+                0.28,
+              );
+            }
+          });
 
           return;
         }

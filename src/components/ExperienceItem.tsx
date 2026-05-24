@@ -21,6 +21,7 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="flex min-w-0 flex-col gap-4 sm:flex-row sm:items-start">
           <div
+            data-experience-logo
             className={`flex h-16 w-28 shrink-0 items-center justify-center rounded-2xl border px-4 py-3 sm:h-[72px] sm:w-32 ${logoFrameClassName}`}
           >
             <Image
@@ -37,7 +38,10 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
             <p className="mt-2 text-sm text-[var(--muted)]">{experience.location}</p>
           </div>
         </div>
-        <span className="inline-flex w-fit rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2 text-sm font-semibold text-neutral-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.86)] lg:shrink-0">
+        <span
+          data-experience-date
+          className="inline-flex w-fit rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2 text-sm font-semibold text-neutral-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.86)] lg:shrink-0"
+        >
           {experience.date}
         </span>
       </div>
@@ -50,6 +54,7 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
         {experience.techTags.map((tag) => (
           <span
             key={tag}
+            data-experience-tag
             className="rounded-full border border-neutral-200 bg-neutral-50 px-3.5 py-1.5 text-xs font-semibold text-neutral-600 transition duration-300 group-hover:border-neutral-300 group-hover:bg-white group-hover:text-neutral-950"
           >
             {tag}

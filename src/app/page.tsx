@@ -46,6 +46,7 @@ export default function Home() {
         <section
           id="experience"
           data-story-section
+          data-experience-section
           data-cursor-label="experience."
           className="relative overflow-hidden border-b border-[var(--line)] bg-white py-24 md:py-28"
         >
@@ -61,6 +62,7 @@ export default function Home() {
 
             <div className="relative mt-12 pl-5 md:pl-8">
               <div
+                data-experience-line
                 className="absolute left-0 top-2 h-[calc(100%-1rem)] w-px bg-gradient-to-b from-teal-400 via-neutral-200 to-transparent md:left-1"
                 aria-hidden="true"
               />
@@ -68,6 +70,7 @@ export default function Home() {
                 {experiences.map((experience) => (
                   <div key={`${experience.company}-${experience.role}`} className="relative">
                     <span
+                      data-experience-dot
                       className="absolute -left-[25px] top-8 h-3 w-3 rounded-full border border-teal-500 bg-white shadow-[0_0_0_6px_rgba(20,184,166,0.12),0_0_24px_rgba(20,184,166,0.24)] md:-left-[33px]"
                       aria-hidden="true"
                     />
