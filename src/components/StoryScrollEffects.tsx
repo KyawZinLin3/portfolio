@@ -19,10 +19,13 @@ export function StoryScrollEffects() {
     const context = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>("[data-story-section]").forEach((section) => {
         const heading = section.querySelector("[data-story-heading]");
-        const headingParts = heading?.children ?? [];
         const isCaseStudiesSection = section.hasAttribute(
           "data-case-studies-section",
         );
+        const isSkillsSection = section.id === "skills";
+        const headingParts = isSkillsSection
+          ? (heading?.querySelectorAll<HTMLElement>("p, h2") ?? [])
+          : (heading?.children ?? []);
         const items = section.querySelectorAll("[data-story-item]");
 
         gsap.set(headingParts, {
@@ -93,22 +96,109 @@ export function StoryScrollEffects() {
           return;
         }
 
+        if (isSkillsSection) {
+          gsap.set(items, {
+            y: 44,
+            opacity: 0,
+            scale: 0.98,
+            filter: "blur(8px)",
+          });
+
+          gsap.set("[data-skill-icon]", {
+            scale: 0.82,
+            rotate: -4,
+          });
+
+          gsap.set("[data-skill-chip]", {
+            y: 14,
+            opacity: 0,
+          });
+
+          gsap
+            .timeline({
+              defaults: {
+                ease: "none",
+              },
+              scrollTrigger: {
+                trigger: heading ?? section,
+                start: "top 86%",
+                end: "top 58%",
+                scrub: 0.4,
+                invalidateOnRefresh: true,
+              },
+            })
+            .to(headingParts, {
+              y: 0,
+              opacity: 1,
+              filter: "blur(0px)",
+              stagger: 0.1,
+              duration: 0.6,
+            });
+
+          gsap.utils.toArray<HTMLElement>(items).forEach((item) => {
+            const icon = item.querySelector("[data-skill-icon]");
+            const chips = item.querySelectorAll("[data-skill-chip]");
+
+            gsap
+              .timeline({
+                defaults: {
+                  ease: "power3.out",
+                },
+                scrollTrigger: {
+                  trigger: item,
+                  start: "top 82%",
+                  end: "top 56%",
+                  scrub: 0.45,
+                  invalidateOnRefresh: true,
+                },
+              })
+              .to(item, {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                filter: "blur(0px)",
+                duration: 0.64,
+              })
+              .to(
+                icon,
+                {
+                  scale: 1,
+                  rotate: 0,
+                  duration: 0.56,
+                },
+                0.08,
+              )
+              .to(
+                chips,
+                {
+                  y: 0,
+                  opacity: 1,
+                  stagger: 0.025,
+                  duration: 0.42,
+                },
+                0.18,
+              );
+          });
+
+          return;
+        }
+
         gsap.set(items, {
           y: 56,
           opacity: 0,
           scale: 0.96,
+          filter: "blur(8px)",
         });
 
         gsap
           .timeline({
             defaults: {
-              ease: "none",
+              ease: "power3.out",
             },
             scrollTrigger: {
               trigger: section,
-              start: "top 82%",
-              end: "center 42%",
-              scrub: 0.45,
+              start: "top 76%",
+              once: true,
               invalidateOnRefresh: true,
             },
           })
@@ -125,10 +215,11 @@ export function StoryScrollEffects() {
               y: 0,
               opacity: 1,
               scale: 1,
+              filter: "blur(0px)",
               stagger: 0.12,
-              duration: 0.52,
+              duration: 0.68,
             },
-            0.38,
+            0.28,
           );
       });
     });
