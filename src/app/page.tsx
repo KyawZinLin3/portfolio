@@ -1,6 +1,7 @@
 import { AnimatedHero } from "@/components/AnimatedHero";
 import { AboutMeSection } from "@/components/AboutMeSection";
 import { CaseStudiesSection } from "@/components/CaseStudiesSection";
+import { ContactSection } from "@/components/ContactSection";
 import { CoreStrengthsSection } from "@/components/CoreStrengthsSection";
 import { CustomCursor } from "@/components/CustomCursor";
 import { ExperienceItem } from "@/components/ExperienceItem";
@@ -82,32 +83,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section
-          id="contact"
-          data-story-section
-          data-cursor-label="say hello."
-          className="min-h-[58svh] bg-neutral-950 py-20 text-white md:py-24"
-        >
-          <div className="page-shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <div data-story-heading>
-              <p className="text-sm font-semibold uppercase text-teal-300">
-                Contact
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold">
-                Ready to replace this with your details.
-              </h2>
-            </div>
-            <a
-              data-story-item
-              href="mailto:hello@example.com"
-              className="contact-button w-full rounded-md border border-white/20 px-10 py-4 text-center text-sm font-semibold text-white transition-colors duration-300 md:w-[340px]"
-            >
-              <span className="contact-button__fill" aria-hidden="true" />
-              <span className="contact-button__ring" aria-hidden="true" />
-              <span className="contact-button__text">hello@example.com</span>
-            </a>
-          </div>
-        </section>
+        <ContactSection />
       </main>
     </>
   );

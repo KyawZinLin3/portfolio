@@ -3,7 +3,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Kyaw Zin Lin | Backend-Focused Full-Stack Developer",
-  description: "A clean portfolio built with Next.js, React, TypeScript, Tailwind CSS, and GSAP.",
+  description:
+    "Backend-focused full-stack developer from Yangon building production-ready APIs, SaaS backends, and business web applications with ASP.NET Core, C#, SQL, React, and cloud tools.",
   icons: {
     icon: "/icon.svg",
     shortcut: "/icon.svg",
