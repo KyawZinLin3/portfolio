@@ -40,43 +40,48 @@ export function ContactSection() {
       id="contact"
       data-story-section
       data-cursor-label="say hello."
-      className="relative overflow-hidden bg-neutral-950 py-20 text-white md:py-28"
+      className="contact-section-bg relative isolate overflow-hidden py-20 text-white md:py-28"
     >
       <div
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-300/45 to-transparent"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent"
         aria-hidden="true"
       />
       <div
-        className="absolute left-1/2 top-10 h-40 w-[min(780px,88vw)] -translate-x-1/2 rounded-[999px] bg-cyan-300/12 blur-3xl"
+        className="contact-section-bg__grid absolute inset-0"
+        aria-hidden="true"
+      />
+      <div
+        className="contact-section-bg__beam contact-section-bg__beam--one"
+        aria-hidden="true"
+      />
+      <div
+        className="contact-section-bg__beam contact-section-bg__beam--two"
         aria-hidden="true"
       />
 
       <div className="page-shell relative">
-        <article
+        <div
           data-story-item
-          className="group relative overflow-hidden rounded-[32px] border border-white/12 bg-white/[0.045] p-6 shadow-[0_34px_100px_rgba(0,0,0,0.34)] backdrop-blur transition duration-500 hover:-translate-y-1 hover:border-teal-300/45 hover:bg-white/[0.06] hover:shadow-[0_42px_120px_rgba(20,184,166,0.14)] sm:p-8 md:p-10"
+          className="contact-panel relative overflow-hidden rounded-lg border border-white/14 bg-[#0d0d0d]/92 shadow-[0_34px_110px_rgba(0,0,0,0.42)] backdrop-blur"
         >
+          <div className="contact-panel__texture absolute inset-0" aria-hidden="true" />
           <div
-            className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:34px_34px]"
+            className="contact-panel__slice contact-panel__slice--top"
             aria-hidden="true"
           />
           <div
-            className="absolute -right-24 top-8 h-52 w-52 rotate-12 rounded-[42px] border border-teal-300/18 bg-teal-300/[0.035] transition duration-500 group-hover:-translate-y-2 group-hover:rotate-6"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute -bottom-20 left-8 h-40 w-64 -rotate-6 rounded-[36px] border border-sky-300/14 bg-sky-300/[0.035] transition duration-500 group-hover:translate-x-2 group-hover:rotate-0"
+            className="contact-panel__slice contact-panel__slice--bottom"
             aria-hidden="true"
           />
 
-          <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div data-story-heading>
-              <span className="inline-flex items-center gap-2 rounded-full border border-teal-300/25 bg-teal-300/10 px-4 py-2 text-sm font-semibold text-teal-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
-                <span className="h-2 w-2 rounded-full bg-teal-300 shadow-[0_0_18px_rgba(94,234,212,0.75)]" />
+          <div className="relative grid gap-0 lg:grid-cols-[1.04fr_0.96fr]">
+            <div data-story-heading className="p-6 sm:p-8 md:p-10 lg:p-12">
+              <span className="inline-flex items-center gap-2 rounded-md border border-emerald-300/28 bg-emerald-300/10 px-3 py-2 text-xs font-bold uppercase text-emerald-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                <span className="h-2 w-2 bg-emerald-300 shadow-[0_0_18px_rgba(110,231,183,0.72)]" />
                 Available for opportunities
               </span>
-              <h2 className="mt-6 max-w-3xl text-4xl font-semibold leading-tight text-white md:text-5xl">
-                Let&apos;s build something reliable.
+              <h2 className="mt-7 max-w-3xl text-4xl font-semibold leading-tight text-white md:text-5xl">
+                Tell me what you want to ship next.
               </h2>
               <p className="mt-5 max-w-3xl text-base leading-7 text-neutral-300 md:text-lg md:leading-8">
                 I&apos;m open to backend and full-stack developer opportunities,
@@ -84,13 +89,13 @@ export function ContactSection() {
                 business systems, and production-ready web applications.
               </p>
 
-              <div className="mt-8 grid gap-3 text-sm text-neutral-300 sm:grid-cols-2">
-                <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/18 px-4 py-3">
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/8 text-teal-200">
+              <div className="mt-9 grid gap-3 text-sm text-neutral-300 sm:grid-cols-2">
+                <div className="contact-detail-row flex items-center gap-3 rounded-lg border border-white/12 bg-white/[0.045] px-4 py-3">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-white/8 text-emerald-200">
                     <MapPinIcon />
                   </span>
                   <span>
-                    <span className="block text-xs font-semibold uppercase text-neutral-500">
+                    <span className="block text-xs font-bold uppercase text-neutral-500">
                       Location
                     </span>
                     <span className="mt-0.5 block font-semibold text-white">
@@ -98,29 +103,40 @@ export function ContactSection() {
                     </span>
                   </span>
                 </div>
-                <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/18 px-4 py-3">
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/8 text-teal-200">
+                <div className="contact-detail-row flex items-center gap-3 rounded-lg border border-white/12 bg-white/[0.045] px-4 py-3">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-white/8 text-amber-200">
                     <BriefcaseIcon />
                   </span>
                   <span>
-                    <span className="block text-xs font-semibold uppercase text-neutral-500">
+                    <span className="block text-xs font-bold uppercase text-neutral-500">
                       Availability
                     </span>
                     <span className="mt-0.5 block font-semibold text-white">
-                      Open to remote and relocation opportunities
+                      Remote and relocation roles
                     </span>
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="lg:pl-4">
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            <div className="relative border-t border-white/12 bg-black/24 p-4 sm:p-6 md:p-8 lg:border-l lg:border-t-0 lg:p-10">
+              <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center gap-2" aria-hidden="true">
+                  <span className="size-2.5 rounded-full bg-rose-300" />
+                  <span className="size-2.5 rounded-full bg-amber-300" />
+                  <span className="size-2.5 rounded-full bg-emerald-300" />
+                </div>
+                <span className="font-mono text-xs uppercase text-neutral-500">
+                  response channels
+                </span>
+              </div>
+
+              <div className="grid gap-3">
                 {actions.map((action) => {
                   const Icon = action.icon;
                   const className = action.isPrimary
-                    ? "contact-button min-h-14 rounded-2xl border border-teal-200/60 bg-teal-300 px-5 py-4 text-sm font-bold text-neutral-950 shadow-[0_18px_48px_rgba(45,212,191,0.22)] transition duration-300 hover:-translate-y-0.5 hover:border-white hover:shadow-[0_22px_60px_rgba(45,212,191,0.32)]"
-                    : "min-h-14 rounded-2xl border border-white/12 bg-white/[0.055] px-5 py-4 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition duration-300 hover:-translate-y-0.5 hover:border-teal-300/45 hover:bg-white/[0.09] hover:text-teal-100";
+                    ? "contact-button min-h-14 rounded-lg border border-white/60 px-5 py-4 text-sm font-bold shadow-[0_18px_52px_rgba(153,246,228,0.18)] transition duration-300 hover:-translate-y-0.5 hover:border-white hover:shadow-[0_24px_68px_rgba(153,246,228,0.24)]"
+                    : "contact-secondary-button min-h-14 rounded-lg border border-white/12 bg-white/[0.055] px-5 py-4 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition duration-300 hover:-translate-y-0.5 hover:border-emerald-300/42 hover:bg-white/[0.09] hover:text-emerald-100";
 
                   return (
                     <a
@@ -145,12 +161,12 @@ export function ContactSection() {
                 })}
               </div>
 
-              <p className="mt-6 rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-center text-sm font-medium text-neutral-300">
-                Based in Yangon · Open to remote and relocation roles
+              <p className="mt-5 border-l-2 border-emerald-300 bg-white/[0.045] px-4 py-3 text-sm font-medium leading-6 text-neutral-300">
+                Based in Yangon &middot; Open to backend and full-stack roles
               </p>
             </div>
           </div>
-        </article>
+        </div>
       </div>
     </section>
   );
