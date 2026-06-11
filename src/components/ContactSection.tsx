@@ -1,8 +1,8 @@
 const contactLinks = {
-  email: "mailto:kyawzinlin14future@gmail.com",
+  email: "mailto:kyawzinlin.dev@gmail.com",
   cv: "/Kyaw-Zin-Lin-Resume.pdf",
   github: "https://github.com/KyawZinLin3",
-  linkedin: "https://www.linkedin.com/in/kyawzinlin3",
+  linkedin: "https://www.linkedin.com/in/kyaw-zin-lin",
 };
 
 const actions = [
