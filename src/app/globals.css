@@ -28,6 +28,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.resume-viewer,
+.resume-viewer * {
+  cursor: auto !important;
+}
+
 ::selection {
   background: #99f6e4;
   color: #0f172a;

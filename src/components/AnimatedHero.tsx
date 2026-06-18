@@ -277,7 +277,9 @@ export function AnimatedHero() {
     >
       <a
         data-hero-reveal
-        href="/resume.pdf"
+        href="/resume"
+        target="_blank"
+        rel="noreferrer"
         className="resume-shine absolute right-5 top-5 z-20 rounded-full border border-white/15 bg-[#191919] px-5 py-3 font-mono text-sm uppercase tracking-normal text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.14),0_5px_18px_rgba(0,0,0,0.22)] transition hover:-translate-y-0.5 md:right-[10vw] md:top-8 md:px-6 md:py-3.5 md:text-base"
       >
         Get Resume

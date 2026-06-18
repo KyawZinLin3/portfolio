@@ -2,7 +2,7 @@ import { ContactDrawingBoard } from "@/components/ContactDrawingBoard";
 
 const contactLinks = {
   email: "mailto:kyawzinlin.dev@gmail.com",
-  cv: "/Kyaw-Zin-Lin-Resume.pdf",
+  cv: "/resume",
   github: "https://github.com/KyawZinLin3",
   linkedin: "https://www.linkedin.com/in/kyaw-zin-lin",
 };
@@ -16,10 +16,10 @@ const contactActions = [
     cursorLabel: "kyawzinlin.dev@gmail.com",
   },
   {
-    label: "Download resume",
+    label: "View and download resume",
     href: contactLinks.cv,
     icon: DownloadIcon,
-    cursorLabel: "download kzl's resume",
+    cursorLabel: "view and download KZL's resume",
   },
   {
     label: "GitHub",
@@ -70,8 +70,16 @@ export function ContactSection() {
                       aria-label={action.label}
                       data-cursor-label={action.cursorLabel}
                       href={action.href}
-                      target={action.external ? "_blank" : undefined}
-                      rel={action.external ? "noreferrer" : undefined}
+                      target={
+                        action.external || action.href === contactLinks.cv
+                          ? "_blank"
+                          : undefined
+                      }
+                      rel={
+                        action.external || action.href === contactLinks.cv
+                          ? "noreferrer"
+                          : undefined
+                      }
                       className={`group flex size-12 items-center justify-center rounded-2xl border transition duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950 sm:size-14 ${
                         action.isPrimary
                           ? "border-neutral-950 bg-neutral-950 text-white shadow-[0_14px_30px_rgba(15,23,42,0.16)]"
