@@ -373,7 +373,7 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    role: "Software Developer Intern",
+    role: "Software Developer",
     company: "InnoLogic",
     logo: innologicLogo,
     location: "Yangon, Myanmar",

@@ -1,10 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { Ref } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
-const navItems = ["Home", "About", "Explorations", "Work", "Contact"];
+const navItems = [
+  { label: "Home", href: "#" },
+  { label: "About", href: "#about" },
+  { label: "Explorations", href: "#case-studies" },
+  { label: "Work", href: "#experience" },
+  { label: "Contact", href: "#contact" },
+];
 const heroPhrases = [
   "fast web apps.",
   "SaaS platforms.",
@@ -23,8 +30,9 @@ const avatarMessages = [
     side: "left",
   },
   {
-    accent: "Cursor detected.",
-    body: "The avatar is following along.",
+    accent: "You can call me Rick.",
+    body: "I live in Yangon",
+    flagCode: "mm",
     side: "right",
   },
   {
@@ -280,89 +288,24 @@ export function AnimatedHero() {
             <span className="block text-[#99f6e4]">{currentMessage.accent}</span>
             <span className="mt-0.5 block text-white/85">
               {currentMessage.body}
+              {"flagCode" in currentMessage ? (
+                <span
+                  className={`fi fi-${currentMessage.flagCode} ml-2 rounded-[2px] align-[-1px]`}
+                  aria-label="Myanmar flag"
+                />
+              ) : null}
             </span>
             <span
               className={`absolute left-1/2 top-[-6px] h-3 w-3 -translate-x-1/2 rotate-45 bg-[#111111] ${messageArrowClass}`}
             />
           </div>
 
-          <svg
-            viewBox="210 200 610 720"
+          <AvatarDrawing
             className="h-[102px] w-[102px] overflow-visible md:h-[118px] md:w-[118px]"
-            role="img"
-            aria-hidden="true"
-          >
-            <g ref={avatarArtRef}>
-              <path
-                d="M532 379c132.548 0 240 107.452 240 240 0 132.548-7.452 280-180 280-129.285 0-233.252-82.78-277.261-180.046A81.49 81.49 0 0 1 312 719c-44.183 0-80-35.817-80-80 0-39.865 29.159-72.92 67.312-78.999C325.599 455.979 419.81 379 532 379Z"
-                fill="#ffffff"
-                stroke="#050505"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="24"
-              />
-              <path
-                d="M295.859 624.545l8.282 30.91"
-                fill="none"
-                stroke="#050505"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="24"
-              />
-              <path
-                d="M631 694.381c29.333-6.921 47-17.048 53-30.381 9-20-46.967-57.607-23.839-85"
-                fill="none"
-                stroke="#050505"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-              />
-              <path
-                d="M549 759c26.13 14.667 54.13 22 84 22s49.87-7.333 60-22"
-                fill="none"
-                stroke="#050505"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-              />
-              <path
-                d="M662.391 482.335c3-5 60-23 80-20s49 29 49 29-27-11-52-11-60 18-60 18-20-11-17-16Z"
-                fill="#050505"
-                stroke="#050505"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="4"
-              />
-              <path
-                d="M615 482.335c-3-5-60-23-80-20s-49 29-49 29 27-11 52-11 60 18 60 18 20-11 17-16Z"
-                fill="#050505"
-                stroke="#050505"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="4"
-              />
-              <path
-                d="M611.547 230.463C698.094 236.925 725 287 724.589 333.555 748.639 343.003 766 370.026 766 401.887c0 17.655-17.667 40.026-53 67.113-54.352 2.69-98.224 1.09-131.617-4.798C514.014 452.323 462.039 412.237 441 412c-21.039-.237-38.518 4.589-57 42-18.482 37.411 1.823 66.524 0 97-7.409 37.904-13.245 71.451-17.507 100.64l-.493 3.36-37.883-90.175h-40.971C265.13 517.303 245 413 269 379s41-28 77-19c8.615-44.616 47.524-68.237 84.725-89.689L433 269c33-19 92-45 178.547-38.537Z"
-                fill="#050505"
-                stroke="#050505"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="12"
-              />
-              <path
-                d="M518 541c16-13.333 32-20 48-20s32 6.667 48 20M664 541c16-13.333 32-20 48-20s32 6.667 48 20"
-                fill="none"
-                stroke="#050505"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="12"
-              />
-              <g fill="#050505">
-                <circle ref={leftEyeRef} cx="566.229" cy="538.576" r="20" />
-                <circle ref={rightEyeRef} cx="711.771" cy="538.576" r="20" />
-              </g>
-            </g>
-          </svg>
+            avatarArtRef={avatarArtRef}
+            leftEyeRef={leftEyeRef}
+            rightEyeRef={rightEyeRef}
+          />
         </div>
 
         <div className="mx-auto mt-7 max-w-[960px] md:mt-8">
@@ -392,8 +335,8 @@ export function AnimatedHero() {
           className="relative mx-auto mt-8 flex w-fit max-w-full origin-center transform-gpu items-center gap-3 rounded-full bg-[#151515] p-2 text-left shadow-[0_28px_70px_rgba(0,0,0,0.2)] will-change-transform md:mt-9 md:p-2.5"
           aria-label="Primary navigation"
         >
-          <div className="h-[46px] w-[46px] shrink-0 overflow-hidden rounded-full bg-[radial-gradient(circle_at_30%_20%,#ff8a39,#181818_58%)] md:h-[52px] md:w-[52px]">
-            <div className="h-full w-full bg-[linear-gradient(135deg,transparent_36%,rgba(255,255,255,0.16)_36%,transparent_52%)]" />
+          <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#f3f3f3] ring-1 ring-white/12 md:h-[52px] md:w-[52px]">
+            <AvatarDrawing className="h-[38px] w-[38px] translate-x-[1px] translate-y-[2px] overflow-visible md:h-[43px] md:w-[43px]" />
           </div>
           <span className="h-7 w-px bg-white/15" />
           <button
@@ -427,28 +370,28 @@ export function AnimatedHero() {
           <div className="hidden items-center gap-1 md:flex">
             {navItems.map((item) => (
               <a
-                key={item}
-                href={item === "Home" ? "#" : `#${item.toLowerCase()}`}
+                key={item.label}
+                href={item.href}
                 onPointerEnter={
-                  item === "Contact" ? handleNavContactPointer : undefined
+                  item.label === "Contact" ? handleNavContactPointer : undefined
                 }
                 onPointerMove={
-                  item === "Contact" ? handleNavContactPointer : undefined
+                  item.label === "Contact" ? handleNavContactPointer : undefined
                 }
                 className={`whitespace-nowrap rounded-full px-3.5 py-3 text-sm font-semibold transition md:px-4 md:py-3.5 md:text-[15px] ${
-                  item === "Contact"
+                  item.label === "Contact"
                     ? "nav-contact-button min-w-[108px] border border-white/10 bg-[#3f3f3f] text-center text-white md:min-w-[126px]"
                     : "text-[#a7a7a7] hover:bg-white/5 hover:text-white"
                 }`}
               >
-                {item === "Contact" ? (
+                {item.label === "Contact" ? (
                   <>
                     <span className="nav-contact-button__fill" aria-hidden="true" />
                     <span className="nav-contact-button__ring" aria-hidden="true" />
-                    <span className="nav-contact-button__text">{item}</span>
+                    <span className="nav-contact-button__text">{item.label}</span>
                   </>
                 ) : (
-                  item
+                  item.label
                 )}
               </a>
             ))}
@@ -464,18 +407,18 @@ export function AnimatedHero() {
             <div className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <a
-                  key={item}
-                  href={item === "Home" ? "#" : `#${item.toLowerCase()}`}
+                  key={item.label}
+                  href={item.href}
                   onClick={() => {
                     setIsMobileMenuOpen(false);
                   }}
                   className={`rounded-2xl px-4 py-3 text-sm font-semibold transition ${
-                    item === "Contact"
+                    item.label === "Contact"
                       ? "bg-white text-neutral-950"
                       : "text-[#d7d7d7] hover:bg-white/6 hover:text-white"
                   }`}
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
             </div>
@@ -483,5 +426,97 @@ export function AnimatedHero() {
         </nav>
       </div>
     </section>
+  );
+}
+
+function AvatarDrawing({
+  className,
+  avatarArtRef,
+  leftEyeRef,
+  rightEyeRef,
+}: {
+  className: string;
+  avatarArtRef?: Ref<SVGGElement>;
+  leftEyeRef?: Ref<SVGCircleElement>;
+  rightEyeRef?: Ref<SVGCircleElement>;
+}) {
+  return (
+    <svg
+      viewBox="210 200 610 720"
+      className={className}
+      role="img"
+      aria-hidden="true"
+    >
+      <g ref={avatarArtRef}>
+        <path
+          d="M532 379c132.548 0 240 107.452 240 240 0 132.548-7.452 280-180 280-129.285 0-233.252-82.78-277.261-180.046A81.49 81.49 0 0 1 312 719c-44.183 0-80-35.817-80-80 0-39.865 29.159-72.92 67.312-78.999C325.599 455.979 419.81 379 532 379Z"
+          fill="#ffffff"
+          stroke="#050505"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="24"
+        />
+        <path
+          d="M295.859 624.545l8.282 30.91"
+          fill="none"
+          stroke="#050505"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="24"
+        />
+        <path
+          d="M631 694.381c29.333-6.921 47-17.048 53-30.381 9-20-46.967-57.607-23.839-85"
+          fill="none"
+          stroke="#050505"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="16"
+        />
+        <path
+          d="M549 759c26.13 14.667 54.13 22 84 22s49.87-7.333 60-22"
+          fill="none"
+          stroke="#050505"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="16"
+        />
+        <path
+          d="M662.391 482.335c3-5 60-23 80-20s49 29 49 29-27-11-52-11-60 18-60 18-20-11-17-16Z"
+          fill="#050505"
+          stroke="#050505"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="4"
+        />
+        <path
+          d="M615 482.335c-3-5-60-23-80-20s-49 29-49 29 27-11 52-11 60 18 60 18 20-11 17-16Z"
+          fill="#050505"
+          stroke="#050505"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="4"
+        />
+        <path
+          d="M611.547 230.463C698.094 236.925 725 287 724.589 333.555 748.639 343.003 766 370.026 766 401.887c0 17.655-17.667 40.026-53 67.113-54.352 2.69-98.224 1.09-131.617-4.798C514.014 452.323 462.039 412.237 441 412c-21.039-.237-38.518 4.589-57 42-18.482 37.411 1.823 66.524 0 97-7.409 37.904-13.245 71.451-17.507 100.64l-.493 3.36-37.883-90.175h-40.971C265.13 517.303 245 413 269 379s41-28 77-19c8.615-44.616 47.524-68.237 84.725-89.689L433 269c33-19 92-45 178.547-38.537Z"
+          fill="#050505"
+          stroke="#050505"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="12"
+        />
+        <path
+          d="M518 541c16-13.333 32-20 48-20s32 6.667 48 20M664 541c16-13.333 32-20 48-20s32 6.667 48 20"
+          fill="none"
+          stroke="#050505"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="12"
+        />
+        <g fill="#050505">
+          <circle ref={leftEyeRef} cx="566.229" cy="538.576" r="20" />
+          <circle ref={rightEyeRef} cx="711.771" cy="538.576" r="20" />
+        </g>
+      </g>
+    </svg>
   );
 }

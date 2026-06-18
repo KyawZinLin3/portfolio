@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "latest",
+    "flag-icons": "^7.5.0",
     "gsap": "latest",
     "next": "latest",
     "react": "latest",
