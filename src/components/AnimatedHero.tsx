@@ -43,6 +43,7 @@ export function AnimatedHero() {
   const rightEyeRef = useRef<SVGCircleElement | null>(null);
   const [messageIndex, setMessageIndex] = useState(-1);
   const [heroPhraseIndex, setHeroPhraseIndex] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const currentMessage =
     avatarMessages[messageIndex < 0 ? 0 : messageIndex % avatarMessages.length];
@@ -220,6 +221,24 @@ export function AnimatedHero() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <section
       ref={rootRef}
@@ -370,14 +389,42 @@ export function AnimatedHero() {
         <nav
           ref={navRef}
           data-hero-reveal
-          className="mx-auto mt-8 flex w-fit max-w-full origin-center transform-gpu items-center gap-3 rounded-full bg-[#151515] p-2 text-left shadow-[0_28px_70px_rgba(0,0,0,0.2)] will-change-transform md:mt-9 md:p-2.5"
+          className="relative mx-auto mt-8 flex w-fit max-w-full origin-center transform-gpu items-center gap-3 rounded-full bg-[#151515] p-2 text-left shadow-[0_28px_70px_rgba(0,0,0,0.2)] will-change-transform md:mt-9 md:p-2.5"
           aria-label="Primary navigation"
         >
           <div className="h-[46px] w-[46px] shrink-0 overflow-hidden rounded-full bg-[radial-gradient(circle_at_30%_20%,#ff8a39,#181818_58%)] md:h-[52px] md:w-[52px]">
             <div className="h-full w-full bg-[linear-gradient(135deg,transparent_36%,rgba(255,255,255,0.16)_36%,transparent_52%)]" />
           </div>
-          <span className="hidden h-7 w-px bg-white/15 sm:block" />
-          <div className="flex items-center gap-1 overflow-x-auto">
+          <span className="h-7 w-px bg-white/15" />
+          <button
+            type="button"
+            className="flex h-[46px] w-[50px] shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#242424] text-white transition hover:bg-[#303030] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#99f6e4] md:hidden"
+            aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-controls="hero-mobile-menu"
+            aria-expanded={isMobileMenuOpen}
+            onClick={() => {
+              setIsMobileMenuOpen((current) => !current);
+            }}
+          >
+            <span className="relative block h-4 w-5" aria-hidden="true">
+              <span
+                className={`absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition ${
+                  isMobileMenuOpen ? "translate-y-[7px] rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-[7px] h-0.5 w-5 rounded-full bg-current transition ${
+                  isMobileMenuOpen ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`absolute bottom-0 left-0 h-0.5 w-5 rounded-full bg-current transition ${
+                  isMobileMenuOpen ? "-translate-y-[7px] -rotate-45" : ""
+                }`}
+              />
+            </span>
+          </button>
+          <div className="hidden items-center gap-1 md:flex">
             {navItems.map((item) => (
               <a
                 key={item}
@@ -405,6 +452,33 @@ export function AnimatedHero() {
                 )}
               </a>
             ))}
+          </div>
+          <div
+            id="hero-mobile-menu"
+            className={`absolute bottom-[calc(100%+10px)] left-0 right-0 z-30 overflow-hidden rounded-[22px] border border-white/10 bg-[#151515] p-2 shadow-[0_26px_70px_rgba(0,0,0,0.24)] transition duration-200 md:hidden ${
+              isMobileMenuOpen
+                ? "translate-y-0 opacity-100"
+                : "pointer-events-none translate-y-2 opacity-0"
+            }`}
+          >
+            <div className="flex flex-col gap-1">
+              {navItems.map((item) => (
+                <a
+                  key={item}
+                  href={item === "Home" ? "#" : `#${item.toLowerCase()}`}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`rounded-2xl px-4 py-3 text-sm font-semibold transition ${
+                    item === "Contact"
+                      ? "bg-white text-neutral-950"
+                      : "text-[#d7d7d7] hover:bg-white/6 hover:text-white"
+                  }`}
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
           </div>
         </nav>
       </div>

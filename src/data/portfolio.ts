@@ -1,5 +1,12 @@
 import type { StaticImageData } from "next/image";
 
+import qhrmHomeImage from "../../specs/case-study/Home.png";
+import qhrmMyRequestImage from "../../specs/case-study/My Request.png";
+import qhrmDashboardImage from "../../specs/case-study/qhrm-v2-dashboard.png";
+import qhrmV2AttendanceImage from "../../specs/case-study/v2-attendance.jpg";
+import smartHrImage from "../../specs/case-study/smartHR.webp";
+import smartHrSettingImage from "../../specs/case-study/smarthr setting.webp";
+import vpnDashboardImage from "../../specs/case-study/vpn-dashboard.png";
 import innologicLogo from "../../specs/logo/innologic-Logo.svg";
 import kbzBankLogo from "../../specs/logo/kbz-bank-logo.svg";
 import qhrmLogo from "../../specs/logo/qhrm_h_logo.svg";
@@ -16,6 +23,9 @@ export type CaseStudy = {
   description: string;
   tags: string[];
   theme: "violet" | "emerald" | "amber" | "sky";
+  image?: StaticImageData;
+  secondaryImage?: StaticImageData;
+  preview?: "mobile";
   metrics: {
     label: string;
     value: string;
@@ -148,45 +158,54 @@ export const caseStudies: CaseStudy[] = [
       "A focused analytics workspace for weekly growth reviews, built around fast filters, clean metric cards, and chart panels that stay readable in long sessions.",
     tags: ["Next.js", "Charts", "Dashboard UX"],
     theme: "violet",
+    image: qhrmDashboardImage,
+    secondaryImage: qhrmV2AttendanceImage,
     metrics: [
       { label: "load time", value: "1.2s" },
       { label: "views", value: "8" },
     ],
   },
   {
-    eyebrow: "02 - Operations",
-    title: "Workflow Command Center",
+    eyebrow: "02 - VPN Admin",
+    title: "VPN User Management Console",
     description:
-      "A compact operations surface for task routing, team handoff, and production visibility, designed to reduce switching between support tools.",
-    tags: ["React", "Queues", "Internal Tools"],
+      "A dark admin dashboard for managing VPN users, active status, expiry windows, data usage, and operational actions from one dense control surface.",
+    tags: ["Next.js", "Admin UI", "Usage Tracking"],
     theme: "emerald",
+    image: vpnDashboardImage,
     metrics: [
-      { label: "tasks", value: "124" },
-      { label: "sla", value: "98%" },
+      { label: "users", value: "10" },
+      { label: "data", value: "443GB" },
     ],
   },
   {
-    eyebrow: "03 - Commerce",
-    title: "Merchant Catalog Builder",
+    eyebrow: "03 - Mobile HR",
+    title: "QHRM Mobile Workspace",
     description:
-      "A storefront management flow that combines product editing, preview states, and campaign checks into a calmer publishing experience.",
-    tags: ["TypeScript", "Forms", "Preview"],
+      "A mobile HR workspace for attendance, leave, payroll, onboarding, and team actions, designed around fast check-ins and clear daily tasks.",
+    tags: ["Mobile UI", "HRMS", "Self-Service"],
     theme: "amber",
+    preview: "mobile",
+    image: qhrmHomeImage,
+    secondaryImage: qhrmMyRequestImage,
     metrics: [
-      { label: "items", value: "320" },
-      { label: "drafts", value: "14" },
+      { label: "modules", value: "8" },
+      { label: "check-in", value: "08:00" },
     ],
   },
   {
-    eyebrow: "04 - Finance",
-    title: "Subscription Revenue Console",
+    eyebrow: "04 - Smart HR",
+    title: "SmartHR Employee Workspace",
     description:
-      "A finance-friendly interface for subscriptions, invoices, and account health, with dense tables balanced by clear summaries and status signals.",
-    tags: ["ASP.NET", "Billing", "Data Tables"],
+      "A mobile employee workspace for attendance, profile settings, HR requests, learning, reports, and daily self-service actions.",
+    tags: ["Mobile UI", "Employee App", "Self-Service"],
     theme: "sky",
+    preview: "mobile",
+    image: smartHrImage,
+    secondaryImage: smartHrSettingImage,
     metrics: [
-      { label: "mrr", value: "$42k" },
-      { label: "risk", value: "Low" },
+      { label: "modules", value: "9" },
+      { label: "screens", value: "2" },
     ],
   },
 ];

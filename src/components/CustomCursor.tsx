@@ -55,7 +55,7 @@ export function CustomCursor() {
 
       const rippleButton = document
         .elementFromPoint(clientX, clientY)
-        ?.closest<HTMLElement>(".contact-button, .nav-contact-button");
+        ?.closest<HTMLElement>(".nav-contact-button");
 
       if (rippleButton) {
         const bounds = rippleButton.getBoundingClientRect();
