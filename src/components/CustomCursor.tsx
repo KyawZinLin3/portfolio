@@ -9,10 +9,35 @@ export function CustomCursor() {
   const labelRef = useRef(defaultCursorLabel);
   const typingTimeoutRef = useRef<number | null>(null);
   const isVisibleRef = useRef(false);
+  const [isEnabled, setIsEnabled] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [typedLabel, setTypedLabel] = useState(defaultCursorLabel);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1025px) and (pointer: fine)");
+
+    const updateEnabledState = () => {
+      setIsEnabled(mediaQuery.matches);
+
+      if (!mediaQuery.matches) {
+        isVisibleRef.current = false;
+        setIsVisible(false);
+      }
+    };
+
+    updateEnabledState();
+    mediaQuery.addEventListener("change", updateEnabledState);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateEnabledState);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isEnabled) {
+      return;
+    }
+
     const typeLabel = (nextLabel: string) => {
       if (labelRef.current === nextLabel) {
         return;
@@ -95,7 +120,11 @@ export function CustomCursor() {
         window.clearTimeout(typingTimeoutRef.current);
       }
     };
-  }, []);
+  }, [isEnabled]);
+
+  if (!isEnabled) {
+    return null;
+  }
 
   return (
     <div

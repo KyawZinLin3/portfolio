@@ -44,7 +44,7 @@ export function ContactSection() {
       className="contact-section relative overflow-hidden border-t border-neutral-200 bg-[#f5f5f7] py-20 text-neutral-950 md:py-24"
     >
       <div className="page-shell">
-        <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+        <div className="grid min-w-0 gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div data-story-item className="flex w-fit flex-col items-start gap-4">
             <div data-story-heading className="flex flex-col items-start gap-3">
               <h2 className="max-w-[360px] text-3xl font-semibold leading-tight tracking-normal text-neutral-950 sm:text-4xl">
@@ -86,7 +86,7 @@ export function ContactSection() {
             </nav>
           </div>
 
-          <div data-story-item>
+          <div data-story-item className="min-w-0">
             <ContactDrawingBoard />
           </div>
         </div>

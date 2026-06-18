@@ -194,15 +194,15 @@ export function ContactDrawingBoard() {
   };
 
   return (
-    <div className="relative w-full rounded-[28px] border border-neutral-200 bg-white/70 p-2 shadow-[0_28px_70px_rgba(15,23,42,0.10),inset_0_1px_0_rgba(255,255,255,0.9)] backdrop-blur">
-      <div className="flex items-center justify-between gap-3 border-b border-neutral-200/80 px-3 py-2">
-        <div className="flex items-center gap-2" aria-hidden="true">
+    <div className="relative w-full max-w-full min-w-0 rounded-[24px] border border-neutral-200 bg-white/70 p-2 shadow-[0_28px_70px_rgba(15,23,42,0.10),inset_0_1px_0_rgba(255,255,255,0.9)] backdrop-blur sm:rounded-[28px]">
+      <div className="flex min-w-0 flex-col gap-2 border-b border-neutral-200/80 px-2 py-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:px-3">
+        <div className="flex items-center gap-2 self-start sm:self-auto" aria-hidden="true">
           <span className="size-2.5 rounded-full bg-[#ff5f57]" />
           <span className="size-2.5 rounded-full bg-[#ffbd2e]" />
           <span className="size-2.5 rounded-full bg-[#28c840]" />
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex min-w-0 flex-wrap items-center gap-2">
           <button
             type="button"
             aria-label="Eraser tool"
@@ -244,6 +244,14 @@ export function ContactDrawingBoard() {
             ))}
           </div>
 
+          <button
+            type="button"
+            onClick={clearBoard}
+            className="flex h-9 items-center justify-center rounded-full border border-neutral-200 bg-white px-3 text-xs font-semibold text-neutral-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] transition hover:bg-neutral-950 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950"
+          >
+            Clear
+          </button>
+
           <label className="sr-only" htmlFor="contact-board-brush">
             Brush size
           </label>
@@ -260,16 +268,8 @@ export function ContactDrawingBoard() {
               setBrushSize(nextSize);
               applyBrush();
             }}
-            className="h-1.5 w-20 accent-neutral-950"
+            className="h-1.5 w-full min-w-[120px] flex-1 basis-full accent-neutral-950 sm:w-20 sm:min-w-0 sm:flex-none sm:basis-auto"
           />
-
-          <button
-            type="button"
-            onClick={clearBoard}
-            className="flex h-9 items-center justify-center rounded-full border border-neutral-200 bg-white px-3 text-xs font-semibold text-neutral-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] transition hover:bg-neutral-950 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950"
-          >
-            Clear
-          </button>
         </div>
       </div>
 
