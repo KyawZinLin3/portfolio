@@ -269,13 +269,7 @@ function CaseStudyRow({
             </span>
           ))}
         </div>
-        <a
-          href="#contact"
-          className="mt-8 inline-flex items-center gap-3 rounded-full bg-neutral-950 px-6 py-4 text-sm font-semibold text-white shadow-[0_18px_42px_rgba(15,23,42,0.16)] transition hover:-translate-y-0.5 hover:bg-black"
-        >
-          View case study
-          <span aria-hidden="true">↗</span>
-        </a>
+        {/* Case study button can be added here later. */}
       </div>
 
       <div data-case-study-card>
@@ -300,11 +294,12 @@ export function CaseStudiesSection() {
             Case Studies
           </p>
           <h2 className="mt-3 text-3xl font-semibold text-neutral-950 md:text-4xl">
-            Four product stories shaped around clarity, speed, and polish.
+            Selected product work built for real business workflows.
           </h2>
           <p className="mt-4 leading-7 text-[var(--muted)]">
-            Dummy projects for now, structured like real case studies with
-            focused outcomes, product context, and interactive previews.
+            A closer look at HR platforms, operational dashboards, and
+            employee tools designed to make complex tasks clearer, faster, and
+            easier to manage.
           </p>
         </div>
 

@@ -152,11 +152,11 @@ export const projects: Project[] = [
 
 export const caseStudies: CaseStudy[] = [
   {
-    eyebrow: "01 - SaaS Analytics",
-    title: "Executive Reporting Hub",
+    eyebrow: "01 - HRMS Platform",
+    title: "QHRM V2",
     description:
-      "A focused analytics workspace for weekly growth reviews, built around fast filters, clean metric cards, and chart panels that stay readable in long sessions.",
-    tags: ["Next.js", "Charts", "Dashboard UX"],
+      "A centralized HRMS workspace that brings employee records, attendance, payroll, leave, contracts, and exit workflows into one system. It gives HR teams a clear desktop administration experience while employees can handle everyday attendance and self-service tasks from mobile.",
+    tags: ["HRMS", "Employee Management", "Attendance"],
     theme: "violet",
     image: qhrmDashboardImage,
     secondaryImage: qhrmV2AttendanceImage,
@@ -166,11 +166,11 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    eyebrow: "02 - VPN Admin",
-    title: "VPN User Management Console",
+    eyebrow: "02 - Multi-Node VPN Platform",
+    title: "Hex-Link VPN Dashboard",
     description:
-      "A dark admin dashboard for managing VPN users, active status, expiry windows, data usage, and operational actions from one dense control surface.",
-    tags: ["Next.js", "Admin UI", "Usage Tracking"],
+      "A centralized dashboard for managing VPN services across multiple nodes. Administrators can create user subscription links, define monthly access periods, monitor account status and data usage, and manage day-to-day VPN operations from one control panel.",
+    tags: ["Multi-Node VPN", "Subscription Management", "Usage Tracking"],
     theme: "emerald",
     image: vpnDashboardImage,
     metrics: [
@@ -179,11 +179,11 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    eyebrow: "03 - Mobile HR",
-    title: "QHRM Mobile Workspace",
+    eyebrow: "03 - Mobile HRMS",
+    title: "QHRM V3 App",
     description:
-      "A mobile HR workspace for attendance, leave, payroll, onboarding, and team actions, designed around fast check-ins and clear daily tasks.",
-    tags: ["Mobile UI", "HRMS", "Self-Service"],
+      "A refreshed QHRM mobile experience designed to feel faster, clearer, and easier to use for everyday HR tasks. I developed the mobile APIs that power attendance, leave, payroll, onboarding, and team workflows, with a strong focus on performance and reliable data delivery.",
+    tags: ["Mobile API", "HRMS", "Performance"],
     theme: "amber",
     preview: "mobile",
     image: qhrmHomeImage,
@@ -194,11 +194,11 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    eyebrow: "04 - Smart HR",
-    title: "SmartHR Employee Workspace",
+    eyebrow: "04 - Internal HR Platform",
+    title: "SmarterHR",
     description:
-      "A mobile employee workspace for attendance, profile settings, HR requests, learning, reports, and daily self-service actions.",
-    tags: ["Mobile UI", "Employee App", "Self-Service"],
+      "SmarterHR is KBZ Bank's internal mobile HR app, created to make everyday employee tasks easier in one place. I developed mobile APIs for employee self-service and onboarding, connecting features such as attendance, profiles, HR requests, learning, and reports to the bank's HR systems.",
+    tags: ["Mobile API", "Employee Onboarding", "HRMS"],
     theme: "sky",
     preview: "mobile",
     image: smartHrImage,

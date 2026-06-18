@@ -51,7 +51,9 @@ export function AnimatedHero() {
   const rightEyeRef = useRef<SVGCircleElement | null>(null);
   const [messageIndex, setMessageIndex] = useState(-1);
   const [heroPhraseIndex, setHeroPhraseIndex] = useState(0);
+  const [heroCursorLabel, setHeroCursorLabel] = useState("start here.");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const heroCursorPromptTimerRef = useRef<number | null>(null);
 
   const currentMessage =
     avatarMessages[messageIndex < 0 ? 0 : messageIndex % avatarMessages.length];
@@ -77,6 +79,17 @@ export function AnimatedHero() {
       "--contact-y",
       `${event.clientY - bounds.top}px`,
     );
+  };
+
+  const scheduleHeroCursorPrompt = () => {
+    if (heroCursorLabel !== "start here." || heroCursorPromptTimerRef.current) {
+      return;
+    }
+
+    heroCursorPromptTimerRef.current = window.setTimeout(() => {
+      heroCursorPromptTimerRef.current = null;
+      setHeroCursorLabel("move your cursor around the avatar.");
+    }, 1800);
   };
 
   useEffect(() => {
@@ -247,10 +260,19 @@ export function AnimatedHero() {
     };
   }, [isMobileMenuOpen]);
 
+  useEffect(() => {
+    return () => {
+      if (heroCursorPromptTimerRef.current) {
+        window.clearTimeout(heroCursorPromptTimerRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section
       ref={rootRef}
-      data-cursor-label="start here."
+      data-cursor-label={heroCursorLabel}
+      onPointerMove={scheduleHeroCursorPrompt}
       className="relative isolate flex min-h-[100svh] overflow-hidden bg-[#fbfbfb] px-5 py-7 text-center text-black md:py-8"
     >
       <a
@@ -265,6 +287,8 @@ export function AnimatedHero() {
         <div
           ref={avatarRef}
           data-hero-reveal
+          data-cursor-proximity-label="hover over KZL for a message."
+          data-cursor-proximity-radius="170"
           className="group/avatar relative mx-auto flex h-[112px] w-[112px] items-center justify-center rounded-full bg-[#f3f3f3] md:h-[132px] md:w-[132px]"
           aria-label="Interactive avatar looking toward your cursor"
           onPointerEnter={() => {

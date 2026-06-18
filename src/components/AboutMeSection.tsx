@@ -280,7 +280,7 @@ function FloatingCard({
   );
 }
 
-function AboutPhotoPlaceholder({
+function AboutPhotoCard({
   constraintRef,
 }: {
   constraintRef: RefObject<HTMLElement | null>;
@@ -292,16 +292,15 @@ function AboutPhotoPlaceholder({
     >
       <DraggableLayer constraintRef={constraintRef} className="h-full w-full">
         <div className="h-full w-full rounded-[26px] border border-neutral-200 bg-white p-2 shadow-[0_24px_70px_rgba(15,23,42,0.12)] transition-[box-shadow,border-color,background-color] duration-300 hover:border-neutral-300 hover:shadow-[0_28px_78px_rgba(15,23,42,0.16)]">
-          <div className="flex h-full w-full select-none flex-col justify-between overflow-hidden rounded-[20px] bg-[radial-gradient(circle_at_30%_20%,#99f6e4,transparent_34%),linear-gradient(135deg,#111827,#27272a)] p-4 text-white">
-            <div className="h-10 w-10 rounded-full border border-white/20 bg-white/15" />
-            <div>
-              <p className="text-xs font-semibold uppercase text-white/55">
-                Photo
-              </p>
-              <p className="mt-1 text-sm font-semibold leading-5">
-                Replace this with your portrait later.
-              </p>
-            </div>
+          <div className="relative h-full w-full select-none overflow-hidden rounded-[20px] bg-neutral-100">
+            <Image
+              src="/about-profile.jpeg"
+              alt="Kyaw Zin Lin"
+              fill
+              sizes="(min-width: 1024px) 192px, (min-width: 768px) 176px, 160px"
+              draggable={false}
+              className="object-cover"
+            />
           </div>
         </div>
       </DraggableLayer>
@@ -489,7 +488,7 @@ export function AboutMeSection() {
             />
           ))}
 
-          <AboutPhotoPlaceholder constraintRef={sectionRef} />
+          <AboutPhotoCard constraintRef={sectionRef} />
         </div>
       </div>
     </section>

@@ -4,6 +4,29 @@ import { useEffect, useRef, useState } from "react";
 
 const defaultCursorLabel = "start here.";
 
+function getProximityCursorLabel(clientX: number, clientY: number) {
+  const elements = document.querySelectorAll<HTMLElement>(
+    "[data-cursor-proximity-label]",
+  );
+  let nearestLabel: string | undefined;
+  let nearestDistance = Number.POSITIVE_INFINITY;
+
+  elements.forEach((element) => {
+    const bounds = element.getBoundingClientRect();
+    const deltaX = Math.max(bounds.left - clientX, 0, clientX - bounds.right);
+    const deltaY = Math.max(bounds.top - clientY, 0, clientY - bounds.bottom);
+    const distance = Math.hypot(deltaX, deltaY);
+    const radius = Number(element.dataset.cursorProximityRadius) || 160;
+
+    if (distance <= radius && distance < nearestDistance) {
+      nearestDistance = distance;
+      nearestLabel = element.dataset.cursorProximityLabel;
+    }
+  });
+
+  return nearestLabel;
+}
+
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement | null>(null);
   const labelRef = useRef(defaultCursorLabel);
@@ -88,7 +111,11 @@ export function CustomCursor() {
         rippleButton.style.setProperty("--contact-y", `${clientY - bounds.top}px`);
       }
 
-      typeLabel(target?.dataset.cursorLabel || defaultCursorLabel);
+      const proximityLabel = getProximityCursorLabel(clientX, clientY);
+
+      typeLabel(
+        proximityLabel || target?.dataset.cursorLabel || defaultCursorLabel,
+      );
     };
 
     const handlePointerMove = (event: PointerEvent) => {
